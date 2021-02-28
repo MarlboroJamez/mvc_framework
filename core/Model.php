@@ -3,14 +3,14 @@
 namespace app\core;
 use app\models;
 
-class Model
+abstract class Model
 {
     public const RULE_REQUIRED = 'required';
     public const RULE_EMAIL = 'email';
     public const RULE_MIN = 'min';
     public const RULE_MAX = 'max';
     public const RULE_MATCH = 'match';
-
+    public const RULE_UNIQUE = 'unique';
     public function loadData($data)
     {
         foreach($data as $key => $value){
@@ -48,6 +48,18 @@ class Model
                 if($ruleName === self::RULE_MATCH && $value !== $this->{$rule['match']}){
                     $this->addError($attribute, self::RULE_MATCH, $rule);
                 }
+                if($ruleName === self::RULE_UNIQUE){
+                    $className = $rule['class'];
+                    $uniqueAttr = $rule['attribute'] ?? $attribute;
+                    $tableName = $className::tableName();
+                    $statement = Application::$app->db->prepare("SELECT * FROM $tableName WHERE $uniqueAttr = :attr");
+                    $statement->bindValue(":attr", $value);
+                    $statement->execute();
+                    $record = $statement->fetchObject();
+                    if($record){
+                        $this->addError($attribute, self::RULE_UNIQUE, ['field' => $attribute]);
+                    }
+                }
             }
         }
         return empty($this->errors);
@@ -70,6 +82,7 @@ class Model
             self::RULE_MIN => 'Min length is {min}',
             self::RULE_MAX => 'Max length is {max}',
             self::RULE_MATCH => 'Must be the same as {match}',
+            self::RULE_UNIQUE => '{field} already exists',
 
         ];
     }
