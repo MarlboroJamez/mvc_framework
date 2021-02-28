@@ -4,6 +4,7 @@
  * Date: 2.25.2021
  * Time: 1:31 PM
  */
+use app\core\Application;
 ?>
 
 <!doctype html>
@@ -34,6 +35,7 @@
                     <a class="nav-link" href="/contact">Contact</a>
                 </li>
             </ul>
+            <?php if (Application::isGuest()): ?>
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a class="nav-link" href="/login">Login</a>
@@ -42,10 +44,24 @@
                     <a class="nav-link" href="/register">Register</a>
                 </li>
             </ul>
+            <?php else: ?>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Welcome <?php echo Application::$app->user->getDisplayName() ?>
+                        (Logout)
+                    </a>
+                </li>
+            </ul>
+            <?php endif; ?>
         </div>
 </nav>
 
 <div class="container">
+    <?php if(Application::$app->session->getFlash('success')): ?>
+    <div class="alert alert-success">
+        <?php echo Application::$app->session->getFlash('success') ?>
+    </div>
+    <?php endif; ?>
     {{content}}
 </div>
 
