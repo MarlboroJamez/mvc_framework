@@ -4,7 +4,7 @@ use app\core\DbModel;
 use app\core\Model;
 use app\core\UserModel;
 
-class User extends UserModel
+class User extends DbModel
 {
     const STATUS_INACTIVE = 0;
     const STATUS_ACTIVE = 1;

@@ -1,10 +1,9 @@
 <?php
-/**
- * User: MarlboroJamez
- * Date: 2.25.2021
- * Time: 1:31 PM
- */
 use app\core\Application;
+echo '<pre>';
+var_dump(Application::$app->user);
+echo '</pre>';
+exit;
 ?>
 
 <!doctype html>

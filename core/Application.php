@@ -32,8 +32,6 @@ class Application
         if ($primaryValue){
             $primaryKey = $this->userClass::primaryKey();
             $this->user = $this->userClass::findOne([$primaryKey => $primaryValue ]);
-        } else {
-            $this->user = null;
         }
     }
 
