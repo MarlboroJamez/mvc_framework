@@ -1,5 +1,6 @@
 <?php
 use app\core\Application;
+
 ?>
 
 <!doctype html>
@@ -12,7 +13,7 @@ use app\core\Application;
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 
-    <title>Hello, world!</title>
+    <title><?php $this->title ?>></title>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
