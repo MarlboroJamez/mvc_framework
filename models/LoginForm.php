@@ -7,7 +7,7 @@ namespace app\models;
 use app\core\Application;
 use app\core\Model;
 
-class LoginForm extends Model
+class LoginForm extends User
 {
     public string $email = '';
     public string $password = '';

@@ -5,7 +5,7 @@ use app\models\User;
 
 class Application
 {
-    public string $userClass;
+    public static string $userClass;
     public static string $ROOT_DIR;
     public Router $router;
     public Request $request;
