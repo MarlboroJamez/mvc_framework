@@ -53,7 +53,7 @@ class Router
             Application::$app->controller = $controller;
             $controller->action= $callback[1];
             $callback[0] = $controller;
-            foreach ($controller->getMiiddlewares() as $middleware) {
+            foreach ($controller->getMiddlewares() as $middleware) {
                 $middleware->execute();
             }
         }

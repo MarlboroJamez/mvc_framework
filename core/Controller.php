@@ -3,7 +3,7 @@
 
 namespace app\core;
 
-
+use app\controllers\AuthController;
 use app\core\middlewares\BaseMiddleware;
 
 class Controller
@@ -13,7 +13,7 @@ class Controller
     /**
      * @var \app\core\middlewares\BaseMiddleware[]
      */
-    protected array $miiddlewares = [];
+    protected array $middlewares = [];
     public function setLayout($layout)
     {
         $this->layout = $layout;
@@ -32,9 +32,9 @@ class Controller
     /**
      * @return BaseMiddleware[]
      */
-    public function getMiiddlewares(): array
+    public function getMiddlewares(): array
     {
-        return $this->miiddlewares;
+        return $this->middlewares;
     }
 
 
