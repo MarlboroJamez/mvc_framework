@@ -1,9 +1,5 @@
 <?php
 use app\core\Application;
-echo '<pre>';
-var_dump(Application::$app->user);
-echo '</pre>';
-exit;
 ?>
 
 <!doctype html>
